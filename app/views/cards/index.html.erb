@@ -1,0 +1,16 @@
+<h1>Все карточки</h1>
+  <table class="table table-striped">
+    <tr>
+      <th>Оriginal_text</th>
+      <th>Translated_text</th>
+      <th>Review date</th>
+    </tr>
+
+    <% @cards.each do |card| %>
+      <tr>
+        <td><%= card.original_text %></td>
+        <td><%= card.translated_text %></td>
+        <td><%= card.review_date.strftime("%d/%m/%Y") %></td>
+      </tr>
+    <% end %>
+  </table>
