@@ -13,7 +13,7 @@
       <div class="container-fluid">
         
         <div class="navbar-header">
-          <p class="navbar-brand">Флешкарточкер</p>
+          <%= link_to 'Флешкарточкер', root_path, class: "navbar-brand" %>
         </div>
 
         <ul class="nav navbar-nav navbar-right navigation-links">
@@ -21,7 +21,7 @@
             <%= link_to "Все карточки", cards_path %>
           </li>
           <li>
-            <%= link_to "Добавить карточку", '#' %>
+            <%= link_to "Добавить карточку", new_card_path %>
           </li>
         </ul>
         
