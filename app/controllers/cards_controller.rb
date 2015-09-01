@@ -1,10 +1,10 @@
 class CardsController < ApplicationController
+  before_action :set_card, except: [:index,:new,:create]
   def index
     @cards = Card.all
   end
   
   def show
-    @card = Card.find(params[:id])
   end
 
   def new
@@ -22,27 +22,27 @@ class CardsController < ApplicationController
   end
 
   def edit
-    @card = Card.find(params[:id])
   end
 
   def update
-    @card = Card.find(params[:id])
-
     if @card.update(card_params)
-      redirect_to @card
+      redirect_to cards_path
     else
       render 'edit'
     end
   end
 
   def destroy
-    @card = Card.find(params[:id])
     @card.destroy
 
     redirect_to cards_path
   end
 
   private
+    
+    def set_card
+      @card = Card.find(params[:id])
+    end
 
     def card_params
       params.require(:card).permit(:original_text,:translated_text)
