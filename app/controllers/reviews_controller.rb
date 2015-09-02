@@ -1,22 +1,23 @@
 class ReviewsController < ApplicationController
   def new
-    card = Card.for_review.order("RANDOM()").limit(1)
-    unless card.blank?
-      @card = card.first
-      @review = Review.new(card_id: @card.id)
-    end
+    @card = Card.for_review.order("RANDOM()").first
+    @review = Review.new(card_id: @card.id) unless @card.blank?
   end
 
   def create
-    @card = Card.find(params[:review][:card_id])
-    
-    if @card.check_translation(params[:review][:answer])
-      @card.set_review_date
-      @card.save
+    @review = Review.new(review_params)
+
+    if @review.check_translation
       flash[:notice] = "Правильно"
     else
       flash[:notice] = "Неправильно"
     end
     redirect_to root_path
   end
+
+  private
+    
+    def review_params
+      params.require(:review).permit(:card_id, :answer)
+    end
 end
