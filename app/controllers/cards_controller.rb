@@ -38,15 +38,6 @@ class CardsController < ApplicationController
     redirect_to cards_path
   end
 
-  def review
-    if @card.update(card_params)
-      flash[:notice] = "Правильно"
-    else
-      flash[:notice] = "Неправильно"
-    end
-    redirect_to root_path
-  end
-
   private
     
     def set_card
@@ -54,7 +45,7 @@ class CardsController < ApplicationController
     end
 
     def card_params
-      params.require(:card).permit(:original_text, :translated_text,:answer_original_text)
+      params.require(:card).permit(:original_text, :translated_text)
     end
 
 end
