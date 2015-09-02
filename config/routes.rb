@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
-  root 'home#index'
-  resources :cards
+  root 'reviews#new'
+  resources :cards do
+    post :review, on: :member
+  end
+  resources :reviews, only: [:new, :create]
 end
