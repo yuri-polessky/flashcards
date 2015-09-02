@@ -1,3 +1,28 @@
 <p style="font-size: 22px;">
   Первый в мире удобный менеджер флеш-карточек. Именно так.
 </p>
+
+<% if flash[:notice] %>
+  <div class="alert alert-info">
+    <p><%= flash[:notice] %></p>
+  </div>
+<% end %>
+
+<% if @card %>
+  <div class="panel panel-primary">
+    
+    <div class="panel-heading">
+      <h2 class="panel-title">
+        <%= @card.translated_text %>
+      </h2>
+    </div>
+    
+    <div class="panel-body">
+      <%= simple_form_for @card, url: review_card_path(@card), method: :post do |f| %>
+        <%= f.input :answer_original_text, label: "Исходный текст" %>
+        <%= f.button :submit, "Проверить" %>
+      <% end %>
+    </div>
+  
+  </div>
+<% end %>

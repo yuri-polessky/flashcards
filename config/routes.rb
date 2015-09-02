@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
   root 'home#index'
-  resources :cards
+  resources :cards do 
+    post :review, on: :member
+  end
 end
