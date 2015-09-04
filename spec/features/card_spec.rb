@@ -2,11 +2,13 @@ require 'rails_helper'
 
 describe 'Review cards' do
   
-  let!(:card) { create(:card) }
+  let!(:user) { create(:user) }
+  let!(:card) { create(:card, user: user) }
 
   before(:each) do
     card.review_date = Date.current
     card.save
+    login(user.email,"pass")
     visit root_path
   end
   

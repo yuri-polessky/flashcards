@@ -1,21 +1,21 @@
 class CardsController < ApplicationController
   before_action :set_card, except: [:index,:new,:create]
   def index
-    @cards = Card.all
+    @cards = current_user.cards
   end
   
   def show
   end
 
   def new
-    @card = Card.new
+    @card = current_user.cards.build
   end
 
   def create
-    @card = Card.new(card_params)
+    @card = current_user.cards.build(card_params)
 
     if @card.save
-      redirect_to cards_path
+      redirect_to cards_path, notice: "Успешно добавлена карточка"
     else
       render 'new'
     end
@@ -40,12 +40,12 @@ class CardsController < ApplicationController
 
   private
     
-    def set_card
-      @card = Card.find(params[:id])
-    end
+  def set_card
+    @card = current_user.cards.find(params[:id])
+  end
 
-    def card_params
-      params.require(:card).permit(:original_text, :translated_text)
-    end
+  def card_params
+    params.require(:card).permit(:original_text, :translated_text)
+  end
 
 end
