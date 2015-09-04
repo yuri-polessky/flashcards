@@ -8,7 +8,7 @@ describe 'Review cards' do
   before(:each) do
     card.review_date = Date.current
     card.save
-    login(user.email,"pass")
+    login(user.email, "pass")
     visit root_path
   end
   

@@ -1,4 +1,4 @@
-module UserHelper
+module AuthorizationHelpers
   def login(email,password)
     visit root_path
     click_link "Войти"
