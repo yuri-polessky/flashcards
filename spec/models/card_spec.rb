@@ -2,8 +2,10 @@ require 'rails_helper'
 
 describe Card do
 
+  let!(:user) { create(:user) }
+
   it "has correct review_date after creation" do
-    card = Card.create(original_text: "way", translated_text: "путь")
+    card = user.cards.create(original_text: "way", translated_text: "путь")
     expect(card.review_date).to eq Date.current + 3.day
   end
 

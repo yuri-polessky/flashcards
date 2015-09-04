@@ -1,5 +1,6 @@
 class Card < ActiveRecord::Base
-  validates_presence_of :original_text, :translated_text, :review_date, presence: true
+  belongs_to :user
+  validates :original_text, :translated_text, :review_date, :user, presence: true
   validate  :uniqueness_original_and_translated_text
   before_validation :set_review_date, on: :create
 

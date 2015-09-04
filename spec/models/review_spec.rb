@@ -3,7 +3,7 @@ require 'rails_helper'
 describe Review do
   describe "checks translation" do
     
-    let(:card) { Card.create(original_text: "way", translated_text: "путь") }
+    let(:card) { create(:card) }
 
     context "with correct answer" do
       it "returns true" do
