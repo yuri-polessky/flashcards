@@ -1,5 +1,5 @@
 module AuthorizationHelpers
-  def login(email,password)
+  def login(email, password)
     visit root_path
     click_link "Войти"
     fill_in :signin_email, with: email
@@ -7,12 +7,12 @@ module AuthorizationHelpers
     click_button "Войти"
   end
 
-  def register(email,password)
+  def register(email, password)
     visit root_path
     click_link "Зарегистрироваться"
     fill_in :user_email, with: email
     fill_in :user_password, with: password
     fill_in :user_password_confirmation, with: password
-    click_button "Create User"
+    click_button "Зарегистрироваться"
   end
 end

@@ -6,7 +6,7 @@ describe 'Management cards' do
 
     let!(:user) { create(:user) }
     before(:each) do
-      login(user.email,"pass")
+      login(user.email, "pass")
     end
     
     it "can add card" do

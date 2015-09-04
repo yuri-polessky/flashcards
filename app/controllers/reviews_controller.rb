@@ -1,11 +1,8 @@
 class ReviewsController < ApplicationController
-  skip_before_filter :require_login, only: :new
   
   def new
-    if current_user
-      @card = current_user.cards.for_review.order("RANDOM()").first
-      @review = Review.new(card_id: @card.id) unless @card.blank?
-    end
+    @card = current_user.cards.for_review.order("RANDOM()").first
+    @review = Review.new(card_id: @card.id) unless @card.blank?
   end
 
   def create
