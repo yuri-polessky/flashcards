@@ -48,11 +48,8 @@
 
     <section>
       <div>
-        <% if flash[:notice] %>
-          <p class="alert alert-info"><%= flash[:notice] %></p>
-        <% end %>
-        <% if flash[:alert] %>
-          <p class="alert alert-danger"><%= flash[:alert] %></p>
+        <% flash.each do |key,value| %>
+          <p class="<%= flash_class(key) %>"><%= value %></p>
         <% end %>
       </div>
       <%= yield %>
