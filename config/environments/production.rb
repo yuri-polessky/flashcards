@@ -6,7 +6,7 @@ Rails.application.configure do
 
   config.paperclip_defaults = {
     storage: :s3,
-    bucket: 'flashcardsyuri2349'
+    bucket: ENV["S3_BUCKET"]
   }
 
   # Eager load code on boot. This eager loads most of Rails and
