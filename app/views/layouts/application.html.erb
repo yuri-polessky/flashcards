@@ -23,12 +23,35 @@
           <li>
             <%= link_to "Добавить карточку", new_card_path %>
           </li>
+          <% if current_user %>
+            <li>
+              <%= link_to "Правка профиля", edit_profile_path %>
+            </li>
+            <li>
+              <%= link_to "Выйти", :logout, method: :post %>
+            </li>
+          <% else %>
+            <li>
+              <%= link_to "Зарегистрироваться", :signup %>
+            </li>
+            <li>
+            <%= link_to 'Login with Twitter', auth_at_provider_path(:provider => :twitter) %>
+            </li>
+            <li>
+              <%= link_to "Войти", :login %>
+            </li>
+          <% end %>
         </ul>
         
       </div>
     </nav>
 
     <section>
+      <div>
+        <% flash.each do |key,value| %>
+          <p class="<%= flash_class(key) %>"><%= value %></p>
+        <% end %>
+      </div>
       <%= yield %>
     </section>
   </section>

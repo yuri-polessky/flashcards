@@ -1,6 +1,7 @@
 class ReviewsController < ApplicationController
+  
   def new
-    @card = Card.for_review.order("RANDOM()").first
+    @card = current_user.cards.for_review.order("RANDOM()").first
     @review = Review.new(card_id: @card.id) unless @card.blank?
   end
 
@@ -17,7 +18,7 @@ class ReviewsController < ApplicationController
 
   private
     
-    def review_params
-      params.require(:review).permit(:card_id, :answer)
-    end
+  def review_params
+    params.require(:review).permit(:card_id, :answer)
+  end
 end
