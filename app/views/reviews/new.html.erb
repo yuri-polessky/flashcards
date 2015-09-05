@@ -3,6 +3,9 @@
 </p>
 
 <% if @card %>
+  <div class="thumbnail">
+    <%= image_tag @card.picture.url(:medium) %>
+  </div>
   <div class="panel panel-primary">
     
     <div class="panel-heading">
