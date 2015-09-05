@@ -1,7 +1,9 @@
 class Card < ActiveRecord::Base
   belongs_to :user
-  has_attached_file :picture, styles: {medium: '360x360'}, default_url: "/images/:style/missing.png"
-  validates_attachment :picture, content_type: { content_type: ["image/jpeg", "image/gif", "image/png"] }
+  has_attached_file :picture, styles: { medium: '360x360' },
+    default_url: "/images/:style/missing.png"
+  validates_attachment :picture, 
+    content_type: { content_type: ["image/jpeg", "image/gif", "image/png"] }
   validates :original_text, :translated_text, :review_date, :user, presence: true
   validate  :uniqueness_original_and_translated_text
   before_validation :set_review_date, on: :create

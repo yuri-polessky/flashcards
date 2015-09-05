@@ -37,8 +37,8 @@ Rails.application.configure do
   config.assets.raise_runtime_errors = true
 
   config.paperclip_defaults = {
-    :storage => :s3,
-    :bucket => 'flashcardsyuri23492'
+    storage: :s3,
+    bucket: 'flashcardsyuri23492'
   }
 
   # Raises error for missing translations

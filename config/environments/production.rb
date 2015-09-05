@@ -5,8 +5,8 @@ Rails.application.configure do
   config.cache_classes = true
 
   config.paperclip_defaults = {
-    :storage => :s3,
-    :bucket => 'flashcardsyuri2349'
+    storage: :s3,
+    bucket: 'flashcardsyuri2349'
   }
 
   # Eager load code on boot. This eager loads most of Rails and
