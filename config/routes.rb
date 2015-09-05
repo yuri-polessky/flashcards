@@ -1,8 +1,6 @@
-require 'authenticated_constraint'
 Rails.application.routes.draw do
 
-  root to: 'reviews#new', :constraints => AuthenticatedConstraint.new
-  root to: 'home#index', as: :guest_root
+  root to: 'home#index'
   resources :cards do
     post :review, on: :member
   end

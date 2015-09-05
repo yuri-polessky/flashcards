@@ -8,6 +8,8 @@ gem 'simple_form'
 gem 'nokogiri'
 gem 'sorcery'
 gem 'figaro'
+gem 'paperclip', "~> 4.3"
+gem 'aws-sdk', '~> 1.6'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
