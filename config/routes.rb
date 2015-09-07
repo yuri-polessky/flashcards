@@ -3,7 +3,9 @@ Rails.application.routes.draw do
   root to: 'home#index'
   resources :cards
   resources :reviews, only: [:new, :create]
-  resources :decks
+  resources :decks do
+    get :set_current, on: :member
+  end
   resources :registrations, only: [:new, :create]
   resources :user_sessions, only: [:new, :create, :destroy]
   resource  :profile, controller: :profile, only: [:edit,:update]

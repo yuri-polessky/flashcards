@@ -6,13 +6,14 @@
     </tr>
 
     <% @decks.each do |deck| %>
-      <%if deck.current %>
+      <%if current_user.current_deck == deck %>
         <tr class="success">
       <% else %>
         <tr>
       <% end %>
         <td><%= deck.name %></td>
         <td>
+          <%= link_to "Set current", set_current_deck_path(deck) %>
           <%= link_to "Edit", edit_deck_path(deck) %>
           <%= link_to "Destroy", deck, method: :delete, data: { confirm: 'Are you sure?'} %>
         </td>

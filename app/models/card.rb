@@ -8,14 +8,7 @@ class Card < ActiveRecord::Base
   validate  :uniqueness_original_and_translated_text
   before_validation :set_review_date, on: :create
 
-  def self.for_review
-    current_deck = Deck.current.first
-    if current_deck.nil?
-      where("review_date <= ?", Date.current)
-    else
-      current_deck.cards.where("review_date <= ?", Date.current)
-    end
-  end
+  scope :for_review, -> { where("review_date <= ?", Date.current) }
 
   def set_review_date
     self.review_date = Date.current + 3.day

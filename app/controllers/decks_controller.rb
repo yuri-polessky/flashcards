@@ -1,6 +1,6 @@
 class DecksController < ApplicationController
   before_action :set_deck, except: [:index,:new,:create]
-  before_action :unset_current_deck, only: [:create, :update]
+  
   def index
     @decks = current_user.decks
   end
@@ -39,18 +39,19 @@ class DecksController < ApplicationController
     redirect_to decks_path
   end
 
+  def set_current
+    current_user.update_attribute(:current_deck, @deck)
+    redirect_to decks_path
+  end
+
   private
     
   def set_deck
     @deck = current_user.decks.find(params[:id])
   end
 
-  def unset_current_deck
-    Deck.unset_current_deck if deck_params[:current] == "true"
-  end
-
   def deck_params
-    params.require(:deck).permit(:name,:current)
+    params.require(:deck).permit(:name)
   end
 
 end

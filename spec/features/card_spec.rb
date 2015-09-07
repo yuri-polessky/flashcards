@@ -28,7 +28,9 @@ describe 'Review cards' do
   end
 
   it "show cards from current deck" do
-    current_deck = create(:deck, user: user, current: true)
+    new_deck = create(:deck, user: user)
+    user.update_attribute(:current_deck, new_deck)
+
     visit root_path
     
     expect(page).to_not have_content "Исходный текст"

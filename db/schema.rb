@@ -42,7 +42,6 @@ ActiveRecord::Schema.define(version: 20150906041015) do
   create_table "decks", force: :cascade do |t|
     t.integer "user_id"
     t.string  "name"
-    t.boolean "current", default: false
   end
 
   add_index "decks", ["user_id"], name: "index_decks_on_user_id", using: :btree
@@ -54,8 +53,10 @@ ActiveRecord::Schema.define(version: 20150906041015) do
     t.string   "salt"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "deck_id"
   end
 
+  add_index "users", ["deck_id"], name: "index_users_on_deck_id", using: :btree
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
 
 end

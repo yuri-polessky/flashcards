@@ -32,8 +32,10 @@ describe 'Management decks' do
     end
 
     it "highlight current deck" do
-      create(:deck, user: user, current: true)
+      deck = create(:deck, user: user)
+            
       visit decks_path
+      click_link 'Set current'
 
       expect(page).to have_css('tr.success')
       within(".success") do
