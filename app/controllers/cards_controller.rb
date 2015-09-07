@@ -8,11 +8,11 @@ class CardsController < ApplicationController
   end
 
   def new
-    @card = current_user.cards.build
+    @card = Card.new
   end
 
   def create
-    @card = current_user.cards.build(card_params)
+    @card = Card.new(card_params)
 
     if @card.save
       redirect_to cards_path, notice: "Успешно добавлена карточка"
@@ -45,7 +45,7 @@ class CardsController < ApplicationController
   end
 
   def card_params
-    params.require(:card).permit(:original_text, :translated_text, :picture)
+    params.require(:card).permit(:original_text, :translated_text, :picture, :deck_id)
   end
 
 end

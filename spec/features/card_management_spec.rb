@@ -5,6 +5,7 @@ describe 'Management cards' do
   context "registered user" do
 
     let!(:user) { create(:user) }
+    let!(:deck) { create(:deck, user: user)}
     before(:each) do
       login(user.email, "pass")
     end
@@ -13,19 +14,21 @@ describe 'Management cards' do
       visit new_card_path
       fill_in "card_original_text", with: "way"
       fill_in "card_translated_text", with: "путь"
+      select "English", from: 'Deck'
       click_button "Create Card"
       expect(page).to have_content "Успешно добавлена карточка"
     end
 
     it "can view his cards" do
-      create(:card, translated_text: "путь", user: user)
+      create(:card, translated_text: "путь", deck: deck)
       visit cards_path
       expect(page).to have_content "путь"
     end
 
     it "can't view another user's cards" do
       user2 = create(:user)
-      create(:card, translated_text: "путь", user: user2)
+      deck2 = create(:deck, user: user2, name: "French")
+      create(:card, translated_text: "путь", deck: deck2)
 
       visit cards_path
       expect(page).to_not have_content "путь"

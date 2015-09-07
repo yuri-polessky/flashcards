@@ -1,10 +1,9 @@
 Rails.application.routes.draw do
 
   root to: 'home#index'
-  resources :cards do
-    post :review, on: :member
-  end
+  resources :cards
   resources :reviews, only: [:new, :create]
+  resources :decks
   resources :registrations, only: [:new, :create]
   resources :user_sessions, only: [:new, :create, :destroy]
   resource  :profile, controller: :profile, only: [:edit,:update]
