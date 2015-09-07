@@ -29,7 +29,7 @@ describe 'Review cards' do
 
   it "show cards from current deck" do
     new_deck = create(:deck, user: user)
-    user.update_attribute(:current_deck, new_deck)
+    user.update(current_deck: new_deck)
 
     visit root_path
     

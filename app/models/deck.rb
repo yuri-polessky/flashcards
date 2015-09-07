@@ -4,4 +4,7 @@ class Deck < ActiveRecord::Base
   
   validates :name, :user, presence: true
 
+  def current?
+    self.id == user.deck_id
+  end
 end

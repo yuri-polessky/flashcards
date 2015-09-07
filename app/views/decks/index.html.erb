@@ -6,7 +6,7 @@
     </tr>
 
     <% @decks.each do |deck| %>
-      <%if current_user.current_deck == deck %>
+      <%if deck.current? %>
         <tr class="success">
       <% else %>
         <tr>

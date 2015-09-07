@@ -18,7 +18,7 @@ class Card < ActiveRecord::Base
   
   def uniqueness_original_and_translated_text
     if original_text && translated_text
-      if translated_text.strip.mb_chars.downcase  == original_text.strip.mb_chars.downcase
+      if translated_text.strip.mb_chars.downcase == original_text.strip.mb_chars.downcase
         errors.add(:translated_text,"can't be same as original text")
       end
     end

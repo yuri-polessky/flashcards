@@ -40,7 +40,7 @@ class DecksController < ApplicationController
   end
 
   def set_current
-    current_user.update_attribute(:current_deck, @deck)
+    current_user.update(current_deck: @deck)
     redirect_to decks_path
   end
 

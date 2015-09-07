@@ -1,8 +1,7 @@
 class ReviewsController < ApplicationController
   
   def new
-    @card = current_user.cards_from_current_deck_or_all_cards
-                        .for_review.order("RANDOM()").first
+    @card = current_user.cards_for_review.order("RANDOM()").first
     @review = Review.new(card_id: @card.id) unless @card.blank?
   end
 
