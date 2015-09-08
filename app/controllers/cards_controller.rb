@@ -46,9 +46,9 @@ class CardsController < ApplicationController
 
   def card_params
     card_params = params.require(:card)
-                        .permit(:original_text, :translated_text, :picture, :deck_id, :new_deck_name)
-    unless card_params[:new_deck_name].blank?
-      deck = current_user.decks.find_or_create_by(name: card_params[:new_deck_name])
+                        .permit(:original_text, :translated_text, :picture, :deck_id)
+    unless params[:new_deck_name].blank?
+      deck = current_user.decks.find_or_create_by(name: params[:new_deck_name])
       card_params[:deck_id] = deck.id
     end
     card_params

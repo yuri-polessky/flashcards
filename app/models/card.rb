@@ -8,7 +8,6 @@ class Card < ActiveRecord::Base
   validates :deck, presence: true
   validate  :uniqueness_original_and_translated_text
   before_validation :set_review_date, on: :create
-  attr_accessor :new_deck_name
 
   scope :for_review, -> { where("review_date <= ?", Date.current) }
 

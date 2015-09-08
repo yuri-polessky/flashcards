@@ -3,7 +3,7 @@
   <%= f.input :translated_text, label: "Перевод" %>
   <%= f.association :deck %>
   or create_one: 
-  <%= f.input :new_deck_name %>
+  <%= text_field_tag :new_deck_name %>
   <%= f.input :picture, as: :file %>
   <%= f.button :submit %>
 <% end %>
