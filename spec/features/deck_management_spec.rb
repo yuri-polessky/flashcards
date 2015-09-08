@@ -1,6 +1,6 @@
-require 'rails_helper'
+require "rails_helper"
 
-describe 'Management decks' do
+describe "Management decks" do
   
   context "registered user" do
 
@@ -32,12 +32,12 @@ describe 'Management decks' do
     end
 
     it "highlight current deck" do
-      deck = create(:deck, user: user)
+      create(:deck, user: user)
             
       visit decks_path
       click_link 'Set current'
 
-      expect(page).to have_css('tr.success')
+      expect(page).to have_css("tr.success")
       within(".success") do
         expect(page).to have_content "English"
       end

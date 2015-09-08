@@ -1,7 +1,10 @@
 <%= simple_form_for card do |f| %>
   <%= f.input :original_text, label: "Исходный текст" %>
   <%= f.input :translated_text, label: "Перевод" %>
-  <%= f.association :deck, include_blank: false %>
+  <%= f.association :deck %>
+  or create_one: 
+  <%= f.input :new_deck_name %>
+  <%= f.input :user_id, as: :hidden, input_html: {value: current_user.id} %>
   <%= f.input :picture, as: :file %>
   <%= f.button :submit %>
 <% end %>

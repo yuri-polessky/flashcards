@@ -8,9 +8,11 @@ class User < ActiveRecord::Base
   has_many :authentications, :dependent => :destroy
   accepts_nested_attributes_for :authentications
   
-  validates :password, length: { minimum: 3 }, if: -> { new_record? || changes["password"] }
-  validates :password, confirmation: true, if: -> { new_record? || changes["password"] }
-  validates :password_confirmation, presence: true, if: -> { new_record? || changes["password"] }
+  with_options if: -> { new_record? || changes["password"] } do
+    validates :password, length: { minimum: 3 } 
+    validates :password, confirmation: true
+    validates :password_confirmation, presence: true
+  end
   validates :email, presence: true
 
   def cards_for_review
