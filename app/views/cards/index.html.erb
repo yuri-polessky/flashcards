@@ -4,6 +4,7 @@
       <th>Оriginal_text</th>
       <th>Translated_text</th>
       <th>Review date</th>
+      <th>Deck</th>
       <th>Action</th>
     </tr>
 
@@ -12,6 +13,7 @@
         <td><%= card.original_text %></td>
         <td><%= card.translated_text %></td>
         <td><%= card.review_date.strftime("%d/%m/%Y") %></td>
+        <td><%= card.deck.name %></td>
         <td>
           <%= link_to "Edit", edit_card_path(card) %>
           <%= link_to "Destroy", card, method: :delete, data: { confirm: 'Are you sure?'} %>

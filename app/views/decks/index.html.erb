@@ -1,0 +1,22 @@
+<h1>Все Колоды</h1>
+  <table class="table table-striped">
+    <tr>
+      <th>Название колоды</th>
+      <th>Action</th>
+    </tr>
+
+    <% @decks.each do |deck| %>
+      <%if deck.current? %>
+        <tr class="success">
+      <% else %>
+        <tr>
+      <% end %>
+        <td><%= deck.name %></td>
+        <td>
+          <%= link_to "Set current", set_current_deck_path(deck) %>
+          <%= link_to "Edit", edit_deck_path(deck) %>
+          <%= link_to "Destroy", deck, method: :delete, data: { confirm: 'Are you sure?'} %>
+        </td>
+      </tr>
+    <% end %>
+  </table>

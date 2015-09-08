@@ -1,6 +1,9 @@
 <%= simple_form_for card do |f| %>
   <%= f.input :original_text, label: "Исходный текст" %>
   <%= f.input :translated_text, label: "Перевод" %>
+  <%= f.association :deck %>
+  or create_one: 
+  <%= text_field_tag :new_deck_name %>
   <%= f.input :picture, as: :file %>
   <%= f.button :submit %>
 <% end %>
