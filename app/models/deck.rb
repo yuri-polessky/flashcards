@@ -5,6 +5,6 @@ class Deck < ActiveRecord::Base
   validates :name, :user, presence: true
 
   def current?
-    self.id == user.deck_id
+    self == user.current_deck
   end
 end

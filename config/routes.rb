@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   
   get  'sign_up' => 'registrations#new',     :as => :signup
   get  'login'   => 'user_sessions#new',     :as => :login
-  delete 'logout'  => 'user_sessions#destroy', :as => :logout
+  delete 'logout' => 'user_sessions#destroy', :as => :logout
 
   post "oauth/callback"  => "oauths#callback"
   get  "oauth/callback"  => "oauths#callback" # for use with Github, Facebook

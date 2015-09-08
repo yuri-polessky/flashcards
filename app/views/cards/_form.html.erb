@@ -4,7 +4,6 @@
   <%= f.association :deck %>
   or create_one: 
   <%= f.input :new_deck_name %>
-  <%= f.input :user_id, as: :hidden, input_html: {value: current_user.id} %>
   <%= f.input :picture, as: :file %>
   <%= f.button :submit %>
 <% end %>
