@@ -7,6 +7,8 @@ Rails.application.configure do
   config.paperclip_defaults = {
     storage: :s3,
     bucket: ENV["S3_BUCKET"]
+    access_key_id: ENV["S3_KEY"]
+    secret_access_key: ENV["S3_SECRET"]
   }
 
   # Eager load code on boot. This eager loads most of Rails and
