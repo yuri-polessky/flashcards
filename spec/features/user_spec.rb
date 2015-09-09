@@ -36,5 +36,4 @@ describe 'User' do
 
     expect(page).to have_content "Успешный выход!"
   end
-
 end

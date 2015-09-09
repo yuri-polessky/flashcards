@@ -6,14 +6,19 @@ class ReviewsController < ApplicationController
   end
 
   def create
+    @card = current_user.cards.find(review_params[:card_id])
     @review = Review.new(review_params)
 
     if @review.check_translation
       flash[:notice] = "Правильно"
+      redirect_to root_path
+    elsif @review.failed_review_count == 0
+      flash[:notice] = "Три неправильных ответа подряд. Срок проверки карточки обнулен."
+      redirect_to root_path
     else
-      flash[:notice] = "Неправильно"
+      flash[:notice] = "Неправильно."
+      render :new
     end
-    redirect_to root_path
   end
 
   private

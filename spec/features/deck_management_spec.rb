@@ -54,7 +54,5 @@ describe "Management decks" do
       visit decks_path
       expect(page).to have_content "Please login first"
     end
-
   end
-
 end

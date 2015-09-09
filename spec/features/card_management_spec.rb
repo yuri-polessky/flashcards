@@ -45,7 +45,5 @@ describe 'Management cards' do
       visit cards_path
       expect(page).to have_content "Please login first"
     end
-
   end
-
 end

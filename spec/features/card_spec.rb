@@ -7,8 +7,6 @@ describe 'Review cards' do
   let!(:card) { create(:card, deck: deck) }
 
   before(:each) do
-    card.review_date = Date.current
-    card.save
     login(user.email, "pass")
     visit root_path
   end
@@ -35,5 +33,4 @@ describe 'Review cards' do
     
     expect(page).to_not have_content "Исходный текст"
   end
-
 end
