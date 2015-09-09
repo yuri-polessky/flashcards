@@ -1,12 +1,11 @@
 class ReviewsController < ApplicationController
   
   def new
-    @card = current_user.cards_for_review.order("RANDOM()").first
-    @review = Review.new(card_id: @card.id) unless @card.blank?
+    card = current_user.cards_for_review.order("RANDOM()").first
+    @review = Review.new(card_id: card.id) unless card.blank?
   end
 
   def create
-    @card = current_user.cards.find(review_params[:card_id])
     @review = Review.new(review_params)
 
     if @review.check_translation

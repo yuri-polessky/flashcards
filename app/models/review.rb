@@ -1,15 +1,20 @@
 class Review
   include ActiveModel::Model
   attr_accessor :card_id, :answer
-  SPACE_INTERVALS = [12.hours,3.day,1.week,2.week,1.month]
+  SPACE_INTERVALS = [12.hours, 3.day, 1.week, 2.week, 1.month]
 
   def check_translation
-    update_card
-    answer_correct?
+    if answer.strip.mb_chars.downcase == original_text.strip.mb_chars.downcase
+      update_card_correct_answer
+      true
+    else
+      update_card_incorrect_answer
+      false
+    end
   end
 
   def new_review_date
-    Time.current + SPACE_INTERVALS[card.review_count]
+    Time.current + (SPACE_INTERVALS[card.review_count] || 1.month)
   end
 
   def review_count
@@ -17,23 +22,18 @@ class Review
   end
 
   def failed_review_count
-    @failed_review_count ||= (card.failed_review_count + 1)%3
+    @failed_review_count ||= (card.failed_review_count + 1) % 3
   end
 
-  def answer_correct?
-    @answer_correct ||= answer.strip.mb_chars.downcase == original_text.strip.mb_chars.downcase
+  def update_card_correct_answer
+    card.update(review_date: new_review_date, review_count: review_count)
   end
 
-  def update_card
-    if answer_correct?
-      card.review_date = new_review_date
-      card.review_count = review_count
-    else
-      card.failed_review_count = failed_review_count
-      if failed_review_count == 0
-        card.review_count = 1
-        card.review_date = Time.current + 12.hours
-      end
+  def update_card_incorrect_answer
+    card.failed_review_count = failed_review_count
+    if failed_review_count == 0
+      card.review_count = 1
+      card.review_date = Time.current + 12.hours
     end
     card.save
   end

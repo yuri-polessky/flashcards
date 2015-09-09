@@ -9,7 +9,7 @@ class Card < ActiveRecord::Base
   validate  :uniqueness_original_and_translated_text
   before_validation :set_review_date, on: :create
 
-  scope :for_review, -> { where("review_date <= ?", Time.current).where(review_count: (0..5)) }
+  scope :for_review, -> { where("review_date <= ?", Time.current) }
 
   def set_review_date
     self.review_date = Time.current

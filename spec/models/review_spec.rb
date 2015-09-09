@@ -15,7 +15,7 @@ describe Review do
         review = Review.new(card_id: card.id, answer: "way")
         expect {
           review.check_translation
-        }.to change{card.reload.review_count}.by(1)
+        }.to change { card.reload.review_count }.by(1)
       end
     end
 
@@ -43,7 +43,7 @@ describe Review do
         review = Review.new(card_id: card.id, answer: "wey")
         expect {
           review.check_translation
-        }.to change{card.reload.failed_review_count}.by(1)
+        }.to change { card.reload.failed_review_count }.by(1)
       end
 
       it "reset failed_review_count after three incorrect answers" do
@@ -96,6 +96,12 @@ describe Review do
     end
     it "increase review to one month hours after fifth review" do
       card.update(review_count: 4)
+      new_review_date = get_new_review_date(1.month)
+
+      expect(new_review_date).to eq Time.current
+    end
+    it "increase review to one month hours after sixth review" do
+      card.update(review_count: 5)
       new_review_date = get_new_review_date(1.month)
 
       expect(new_review_date).to eq Time.current

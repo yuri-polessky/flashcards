@@ -2,15 +2,15 @@
   Первый в мире удобный менеджер флеш-карточек. Именно так.
 </p>
 
-<% if @card %>
+<% if @review %>
   <div class="thumbnail">
-    <%= image_tag @card.picture.url(:medium) %>
+    <%= image_tag @review.card.picture.url(:medium) %>
   </div>
   <div class="panel panel-primary">
     
     <div class="panel-heading">
       <h2 class="panel-title">
-        <%= @card.translated_text %>
+        <%= @review.card.translated_text %>
       </h2>
     </div>
     
