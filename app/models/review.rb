@@ -5,10 +5,10 @@ class Review
 
   def check_translation
     if answer.strip.mb_chars.downcase == original_text.strip.mb_chars.downcase
-      update_card_correct_answer
+      process_correct_answer
       true
     else
-      update_card_incorrect_answer
+      process_incorrect_answer
       false
     end
   end
@@ -25,11 +25,11 @@ class Review
     @failed_review_count ||= (card.failed_review_count + 1) % 3
   end
 
-  def update_card_correct_answer
+  def process_correct_answer
     card.update(review_date: new_review_date, review_count: review_count)
   end
 
-  def update_card_incorrect_answer
+  def process_incorrect_answer
     card.failed_review_count = failed_review_count
     if failed_review_count == 0
       card.review_count = 1
