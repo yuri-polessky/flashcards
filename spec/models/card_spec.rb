@@ -5,8 +5,15 @@ describe Card do
   let!(:user) { create(:user) }
 
   it "has correct review_date after creation" do
+    Timecop.freeze
     card = user.cards.create(original_text: "way", translated_text: "путь")
-    expect(card.review_date).to eq Date.current + 3.day
+    expect(card.review_date).to eq Time.now
+    Timecop.return
+  end
+
+  it "has correct review_count after creation" do
+    card = user.cards.create(original_text: "way", translated_text: "путь")
+    expect(card.review_count).to eq 0
   end
 
   describe "validate original_text and translated_text" do
@@ -34,6 +41,5 @@ describe Card do
         expect(card.errors[:translated_text]).to include("can't be same as original text")
       end
     end
-  
   end
 end
