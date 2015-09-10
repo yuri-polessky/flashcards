@@ -15,7 +15,7 @@
     </div>
     
     <div class="panel-body">
-      <%= simple_form_for @review do |f| %>
+      <%= simple_form_for :review, url: reviews_path, method: :create do |f| %>
         <%= f.input :answer, label: "Исходный текст" %>
         <%= f.input :card_id, as: :hidden %>
         <%= f.button :submit, "Проверить" %>
