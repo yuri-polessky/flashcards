@@ -9,7 +9,7 @@ class ReviewsController < ApplicationController
     @review = Review.new(review_params)
 
     if @review.check_translation
-      flash[:notice] = message
+      flash[:notice] = success_message
       redirect_to root_path
     elsif @review.failed_review_count == 0
       flash[:notice] = "Три неправильных ответа подряд. Срок проверки карточки обнулен."
@@ -22,9 +22,9 @@ class ReviewsController < ApplicationController
 
   private
   
-  def message
+  def success_message
     if @review.mistype?
-      "Перевод для #{@review.card.translated_text} - #{@review.original_text}. Вы опечатались: #{@review.processed_answer}"
+      "Перевод для #{@review.card.translated_text} - #{@review.original_text}. Вы опечатались: #{@review.answer}"
     else
       "Правильно."
     end

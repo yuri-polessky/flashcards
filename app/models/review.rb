@@ -4,9 +4,8 @@ class Review
   SPACE_INTERVALS = [12.hours, 3.day, 1.week, 2.week, 1.month]
 
   def initialize(args)
-    args.each do |k,v|
-      instance_variable_set("@#{k}", v) unless v.nil?
-    end
+    @answer = args[:answer].strip.mb_chars.downcase if args[:answer]
+    @card_id = args[:card_id]
   end
 
   def check_translation
@@ -20,16 +19,12 @@ class Review
   end
 
   def correct_answer?
-    @distance = DamerauLevenshtein.distance(processed_answer, original_text)
+    @distance = DamerauLevenshtein.distance(answer, original_text)
     distance <= 1
   end
 
   def mistype?
     distance == 1
-  end
-
-  def processed_answer
-    @processed_answer ||= answer.strip.mb_chars.downcase
   end
 
   def new_review_date
