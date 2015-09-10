@@ -33,14 +33,21 @@ describe Review do
       end
     end
 
+    context "with correct answer with typo" do
+      it "returns true" do
+        review = Review.new(card_id: card.id, answer: "wey ")
+        expect(review.check_translation).to be_truthy
+      end
+    end
+
     context "with incorrect answer" do
       it "returns false" do 
-        review = Review.new(card_id: card.id, answer: "wey")
+        review = Review.new(card_id: card.id, answer: "wei")
         expect(review.check_translation).to be_falsey
       end
 
       it "increase failed_review_count by one" do
-        review = Review.new(card_id: card.id, answer: "wey")
+        review = Review.new(card_id: card.id, answer: "wei")
         expect {
           review.check_translation
         }.to change { card.reload.failed_review_count }.by(1)
@@ -48,14 +55,14 @@ describe Review do
 
       it "reset failed_review_count after three incorrect answers" do
         card.update(failed_review_count: 2)
-        review = Review.new(card_id: card.id, answer: "wey")
+        review = Review.new(card_id: card.id, answer: "wei")
         review.check_translation
         expect(card.reload.failed_review_count).to eq 0
       end
 
       it "reset date_review_count after three incorrect answers" do
         card.update(failed_review_count: 2)
-        review = Review.new(card_id: card.id, answer: "wey")
+        review = Review.new(card_id: card.id, answer: "wei")
         Timecop.freeze
         review.check_translation
         Timecop.freeze(Time.current + 12.hours)

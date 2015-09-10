@@ -18,6 +18,13 @@ describe 'Review cards' do
     expect(page).to have_content "Правильно"
   end
 
+  it "show 'Right and typo' with mistyped answer" do
+    fill_in :review_answer, with: "wey"
+    click_button "Проверить"
+
+    expect(page).to have_content "Перевод для путь - way. Вы опечатались: wey"
+  end
+
   it "show 'wrong' with incorrect answer" do
     fill_in :review_answer, with: "***"
     click_button "Проверить"

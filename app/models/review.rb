@@ -1,16 +1,30 @@
 class Review
-  include ActiveModel::Model
   attr_accessor :card_id, :answer
+  attr_reader :distance
   SPACE_INTERVALS = [12.hours, 3.day, 1.week, 2.week, 1.month]
 
+  def initialize(args)
+    @answer = args[:answer].strip.mb_chars.downcase if args[:answer]
+    @card_id = args[:card_id]
+  end
+
   def check_translation
-    if answer.strip.mb_chars.downcase == original_text.strip.mb_chars.downcase
+    if correct_answer?
       process_correct_answer
       true
     else
       process_incorrect_answer
       false
     end
+  end
+
+  def correct_answer?
+    @distance = DamerauLevenshtein.distance(answer, original_text)
+    distance <= 1
+  end
+
+  def mistype?
+    distance == 1
   end
 
   def new_review_date
@@ -43,6 +57,6 @@ class Review
   end
 
   def original_text
-    @original_text ||= card.original_text
+    @original_text ||= card.original_text.strip.mb_chars.downcase
   end
 end
