@@ -36,7 +36,7 @@ Rails.application.configure do
   }
   
   config.action_mailer.default_options = {
-    from: ENV["GMAIL_ACCOUNT"]
+    from: Rails.application.secrets.gmail_account
   }
 
   # Randomize the order test cases are executed.
