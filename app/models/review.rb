@@ -3,9 +3,9 @@ class Review
   attr_reader :distance
   SPACE_INTERVALS = [12.hours, 3.day, 1.week, 2.week, 1.month]
 
-  def initialize(args)
-    @answer = args[:answer].strip.mb_chars.downcase if args[:answer]
-    @card_id = args[:card_id]
+  def initialize(card_id,answer=nil)
+    @answer = answer.strip.mb_chars.downcase if answer
+    @card_id = card_id
   end
 
   def check_translation
