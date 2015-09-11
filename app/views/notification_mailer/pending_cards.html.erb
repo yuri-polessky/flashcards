@@ -1,15 +1,7 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
-  </head>
-  <body>
-    <h1>Приветствую, <%= @user.screen_name %></h1>
-    <p>
-      У вас есть <%= pluralize(@user.count_card, 'card') %> для ревью.<br>
-    </p>
-    <p>
-      Для ревью карточек нажмите на ссылку: <%= @url %>.
-    </p>
-  </body>
-</html>
+<h1>Приветствую, <%= @user.screen_name %></h1>
+<p>
+  У вас есть <%= pluralize(@user.count_card, 'card') %> для ревью.<br>
+</p>
+<p>
+  Для ревью карточек нажмите на ссылку: <%= root_url %>.
+</p>

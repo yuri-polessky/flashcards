@@ -18,7 +18,14 @@ Rails.application.configure do
     authentication:       'plain',
     enable_starttls_auto: true 
   }
-  config.action_mailer.default_url_options = { host: "https://stark-escarpment-3934.herokuapp.com" }
+  
+  config.action_mailer.default_url_options = {
+    host: "https://stark-escarpment-3934.herokuapp.com"
+  }
+  
+  config.action_mailer.default_options = {
+    from: ENV["GMAIL_ACCOUNT"]
+  }
 
   # Eager load code on boot. This eager loads most of Rails and
   # your application in memory, allowing both threaded web servers
