@@ -18,4 +18,11 @@ class User < ActiveRecord::Base
   def cards_for_review
     current_deck ? current_deck.cards.for_review : cards.for_review
   end
+
+  def self.notify_pending_cards
+    joins(:cards).where("cards.review_date <= ?", Time.current).group("users.id").
+      select("users.*, count(cards.id) as count_card").each do |user|
+        NotificationMailer.pending_cards(user).deliver_now
+    end
+  end
 end
