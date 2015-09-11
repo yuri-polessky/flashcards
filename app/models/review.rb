@@ -3,7 +3,7 @@ class Review
   attr_reader :distance
   SPACE_INTERVALS = [12.hours, 3.day, 1.week, 2.week, 1.month]
 
-  def initialize(card_id,answer=nil)
+  def initialize(card_id, answer = nil)
     @answer = answer.strip.mb_chars.downcase if answer
     @card_id = card_id
   end

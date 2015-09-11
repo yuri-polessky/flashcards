@@ -6,7 +6,7 @@ class ReviewsController < ApplicationController
   end
 
   def create
-    @review = Review.new(params[:review][:card_id],params[:review][:answer])
+    @review = Review.new(params[:review][:card_id], params[:review][:answer])
 
     if @review.check_translation
       flash[:notice] = success_message

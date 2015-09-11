@@ -1,11 +1,11 @@
-require 'rails_helper'
+require "rails_helper"
 
-describe 'Notification' do
+describe "Notification" do
   it "send mail users with pending cards" do
-    user = create(:user, email: "example@mail.com",screen_name: "john")
+    user = create(:user, email: "example@mail.com", screen_name: "john")
     deck = create(:deck, user: user)
-    create(:card,deck: deck)
-    create(:card,deck: deck)
+    create(:card, deck: deck)
+    create(:card, deck: deck)
     login(user.email, "pass")
 
     User.notify_pending_cards
