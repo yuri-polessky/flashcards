@@ -5,7 +5,7 @@ en:
   translated_text: "Translated text"
   review_date: "Review date"
   deck: "Deck"
-  name_deck: "Deck's title"
+  deck_name: "Deck's title"
   actions: "Actions"
   edit: "Edit"
   destroy: "Delete"

@@ -5,7 +5,7 @@ ru:
   translated_text: "Перевод"
   review_date: "Дата пересмотра"
   deck: "Колода"
-  name_deck: "Название колоды"
+  deck_name: "Название колоды"
   actions: "Действия"
   edit: "Править"
   destroy: "Удалить"
