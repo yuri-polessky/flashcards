@@ -22,7 +22,7 @@ describe Card do
       it "is invalid" do
         card = Card.new(original_text: "way", translated_text: "way")
         card.valid?
-        expect(card.errors[:translated_text]).to include("can't be same as original text")
+        expect(card.errors[:translated_text]).to include("Не может быть одинаковым с исходным текстом")
       end
     end
 
@@ -30,7 +30,7 @@ describe Card do
       it "is invalid" do
         card = Card.new(original_text: "way", translated_text: "WAY")
         card.valid?
-        expect(card.errors[:translated_text]).to include("can't be same as original text")
+        expect(card.errors[:translated_text]).to include("Не может быть одинаковым с исходным текстом")
       end
     end
 
@@ -38,7 +38,7 @@ describe Card do
       it "is invalid" do
         card = Card.new(original_text: " way", translated_text: "way ")
         card.valid?
-        expect(card.errors[:translated_text]).to include("can't be same as original text")
+        expect(card.errors[:translated_text]).to include("Не может быть одинаковым с исходным текстом")
       end
     end
   end

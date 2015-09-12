@@ -1,6 +1,6 @@
 <h1>Приветствую, <%= @user.screen_name %></h1>
 <p>
-  У вас есть <%= pluralize(@user.count_card, 'card') %> для ревью.<br>
+  У вас есть <%= t("misc.карточек", count: @user.count_card) %> для ревью.<br>
 </p>
 <p>
   Для ревью карточек нажмите на ссылку: <%= root_url %>.

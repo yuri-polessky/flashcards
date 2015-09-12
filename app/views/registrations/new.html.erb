@@ -1,7 +1,8 @@
-<h1>Регистрация</h1>
+<h1><%= t('.title') %></h1>
 <%= simple_form_for @user, url: registrations_path, method: :create do |f| %>
   <%= f.input :email %>
   <%= f.input :password %>
   <%= f.input :password_confirmation %>
-  <%= f.button :submit, "Зарегистрироваться"%>
+  <%= f.input :locale, collection: I18n.available_locales, include_blank: false %>
+  <%= f.button :submit %>
 <% end %>

@@ -1,0 +1,99 @@
+ru:
+  title: "Флешкарточкер"
+  or_create_one: "или создайте новую"
+  original_text: "Исходный текст"
+  translated_text: "Перевод"
+  review_date: "Дата пересмотра"
+  deck: "Колода"
+  deck_name: "Название колоды"
+  actions: "Действия"
+  edit: "Править"
+  destroy: "Удалить"
+  set_current: "Сделать текущей"
+  require_login: "Пожалуйста зарегистрируйтесь сначала."
+  login_provider: "Вы зашли через %{provider}!"
+  failed_login_provider: "Неудачная попытка входа через %{provider}!"
+  success_signup: "Вы успешно зарегистрировались!"
+  success_signin: "Успешный вход."
+  success_logout: 'Успешный выход!'
+  failed_signin: "Вход не удался."
+  correct_answer: "Правильно."
+  mistyped_answer: "Перевод для %{translation} - %{correct_answer}. Вы опечатались: %{mistyped}"
+  three_wrong_answers: "Три неправильных ответа подряд. Срок проверки карточки обнулен."
+  wrong_answer: "Неправильно."
+  shared:
+    navbar:
+      title: "Флешкарточкер"
+      decks: "Колоды"
+      cards: "Карточки"
+      all_decks: "Все колоды"
+      add_deck: "Добавить колоду"
+      all_cards: "Все карточки"
+      add_card: "Добавить карточку"
+      edit_profile: "Правка профиля"
+      logout: "Выйти"
+      signup: "Зарегистрироваться"
+      signup_twitter: "Войти через Твиттер"
+      login: "Войти"
+  home:
+    index: 
+      title: "Первый в мире удобный менеджер флеш-карточек. Именно так."
+  reviews:
+    new:
+      title: "Первый в мире удобный менеджер флеш-карточек. Именно так."
+      original_text: "Исходный текст"
+      check_answer: "Проверить"
+  registrations:
+    new:
+      title: "Регистрация"
+  cards:
+    create: 
+      notice: "Успешно добавлена карточка."
+    new:
+      title: "Добавление новой карточки."
+    edit:
+      title: "Редактирование карточки."
+    index: 
+      title: "Все карточки."
+  decks:
+    create:
+      notice: "Успешно добавлена колода."
+    new:
+      title: "Добавление новой колоды."
+    edit:
+      title: "Редактирование колоды."
+    index: 
+      title: "Все колоды"
+  user_sessions:
+    form:
+      submit: "Войти"
+    new:
+      title: "Вход"
+  helpers:
+    submit:
+      card:
+        create: "Добавить карточку"
+        update: "Сохранить изменения"
+      user:
+        create: "Зарегистрироваться"
+        update: "Сохранить изменения"
+      deck:
+        create: "Добавить колоду"
+        update: "Сохранить изменения"
+  errors:
+    messages:
+      blank: "Не может быть пустым."
+      same_as_original_text: "Не может быть одинаковым с исходным текстом"
+    attributes:
+      picture_content_type:
+        invalid: "Неподдерживаемый формат картинки (только jpeg, gif, png)."
+      password:
+        too_short: "Пароль должен быть не менее четырех символов."
+      password_confirmation:
+        confirmation: "Не совпадает с паролем."
+  misc:
+    карточек:
+      zero: "нет карточек"
+      one: "1 карточка"
+      few: "%{count} карточек"
+      other: "%{count} карточки"

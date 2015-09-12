@@ -1,8 +1,8 @@
-<h1>Все Колоды</h1>
+<h1><%= t(".title") %></h1>
   <table class="table table-striped">
     <tr>
-      <th>Название колоды</th>
-      <th>Action</th>
+      <th><%= t(:deck_name) %></th>
+      <th><%= t(:actions) %></th>
     </tr>
 
     <% @decks.each do |deck| %>
@@ -13,9 +13,9 @@
       <% end %>
         <td><%= deck.name %></td>
         <td>
-          <%= link_to "Set current", set_current_deck_path(deck) %>
-          <%= link_to "Edit", edit_deck_path(deck) %>
-          <%= link_to "Destroy", deck, method: :delete, data: { confirm: 'Are you sure?'} %>
+          <%= link_to t(:set_current), set_current_deck_path(deck) %>
+          <%= link_to t(:edit), edit_deck_path(deck) %>
+          <%= link_to t(:destroy), deck, method: :delete, data: { confirm: 'Are you sure?'} %>
         </td>
       </tr>
     <% end %>

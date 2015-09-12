@@ -1,5 +1,5 @@
 <p style="font-size: 22px;">
-  Первый в мире удобный менеджер флеш-карточек. Именно так.
+  <%= t('.title') %>
 </p>
 
 <% if @review %>
@@ -16,9 +16,9 @@
     
     <div class="panel-body">
       <%= simple_form_for :review, url: reviews_path, method: :create do |f| %>
-        <%= f.input :answer, label: "Исходный текст" %>
+        <%= f.input :answer %>
         <%= f.input :card_id, as: :hidden %>
-        <%= f.button :submit, "Проверить" %>
+        <%= f.button :submit, t('.check_answer') %>
       <% end %>
     </div>
   

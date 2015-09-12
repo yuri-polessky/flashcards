@@ -12,6 +12,7 @@ gem 'paperclip', "~> 4.3"
 gem 'aws-sdk', '~> 1.6'
 gem 'damerau-levenshtein'
 gem 'whenever', require: false
+gem 'http_accept_language'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
@@ -54,6 +55,7 @@ group :test do
   gem 'factory_girl_rails'
   gem 'capybara'
   gem 'timecop'
+  gem 'launchy'
 end
 
 gem 'rails_12factor', group: :production

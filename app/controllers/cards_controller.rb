@@ -15,7 +15,7 @@ class CardsController < ApplicationController
     @card = Card.new(card_params)
 
     if @card.save
-      redirect_to cards_path, notice: "Успешно добавлена карточка"
+      redirect_to cards_path, notice: t('.notice')
     else
       render 'new'
     end

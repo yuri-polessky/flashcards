@@ -1,5 +1,5 @@
 <%= simple_form_for :signin, { url: :user_sessions, method: :post } do |f| %>
   <%= f.input :email %>
   <%= f.input :password %>
-  <%= f.button :submit, "Войти" %>
+  <%= f.button :submit, t('.submit') %>
 <% end %>

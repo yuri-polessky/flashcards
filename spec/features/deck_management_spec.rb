@@ -12,7 +12,7 @@ describe "Management decks" do
     it "can add deck" do
       visit new_deck_path
       fill_in "deck_name", with: "English"
-      click_button "Create Deck"
+      click_button "Добавить колоду"
       expect(page).to have_content "Успешно добавлена колода"
     end
 
@@ -35,7 +35,7 @@ describe "Management decks" do
       create(:deck, user: user)
             
       visit decks_path
-      click_link 'Set current'
+      click_link 'Сделать текущей'
 
       expect(page).to have_css("tr.success")
       within(".success") do
@@ -47,12 +47,12 @@ describe "Management decks" do
   context "guest" do
     it "can't add card" do
       visit new_deck_path
-      expect(page).to have_content "Please login first"
+      expect(page).to have_content "Пожалуйста зарегистрируйтесь сначала."
     end
 
     it "can't view cards" do
       visit decks_path
-      expect(page).to have_content "Please login first"
+      expect(page).to have_content "Пожалуйста зарегистрируйтесь сначала."
     end
   end
 end

@@ -1,0 +1,7 @@
+<h1>Hello, <%= @user.screen_name %></h1>
+<p>
+  You have <%= pluralize(@user.count_card, 'card') %> for review.<br>
+</p>
+<p>
+  Click <%= root_url %> for review cards.
+</p>
