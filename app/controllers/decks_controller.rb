@@ -16,7 +16,7 @@ class DecksController < ApplicationController
     @deck = current_user.decks.build(deck_params)
 
     if @deck.save
-      redirect_to decks_path, notice: "Успешно добавлена колода"
+      redirect_to decks_path, notice: t('.notice')
     else
       render :new
     end

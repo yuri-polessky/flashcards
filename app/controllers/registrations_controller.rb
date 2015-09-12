@@ -9,7 +9,7 @@ class RegistrationsController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       login(params[:user][:email],params[:user][:password])
-      redirect_to root_url, notice: "Вы успешно зарегистрировались!"
+      redirect_to root_url, notice: t(:success_signup)
     else
       render :new
     end
@@ -18,6 +18,6 @@ class RegistrationsController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:email, :password, :password_confirmation)
+    params.require(:user).permit(:email, :password, :password_confirmation,:locale)
   end
 end

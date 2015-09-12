@@ -1,23 +1,82 @@
-# Files in the config/locales directory are used for internationalization
-# and are automatically loaded by Rails. If you want to use locales other
-# than English, add the necessary files in this directory.
-#
-# To use the locales, use `I18n.t`:
-#
-#     I18n.t 'hello'
-#
-# In views, this is aliased to just `t`:
-#
-#     <%= t('hello') %>
-#
-# To use a different locale, set it with `I18n.locale`:
-#
-#     I18n.locale = :es
-#
-# This would use the information in config/locales/es.yml.
-#
-# To learn more, please read the Rails Internationalization guide
-# available at http://guides.rubyonrails.org/i18n.html.
-
 en:
-  hello: "Hello world"
+  title: "Flashcarder"
+  or_create_one: "or create new"
+  original_text: "Original text"
+  translated_text: "Translated text"
+  review_date: "Review date"
+  deck: "Deck"
+  name_deck: "Deck's title"
+  actions: "Actions"
+  edit: "Edit"
+  destroy: "Delete"
+  set_current: "Set current"
+  require_login: "Please login first."
+  login_provider: "You signed up with %{provider}!"
+  failed_login_provider: "Registration with %{provider} failed!"
+  success_signup: "Successfull registration!"
+  success_signin: "Successfull login."
+  success_logout: 'Successfull logout!'
+  failed_signin: "Unsuccessfull login"
+  correct_answer: "You are right."
+  mistyped_answer: "Translation for %{translation} is %{correct_answer}. You made typo: %{mistyped}."
+  three_wrong_answers: "You made three wrong answers in a row. Review date for card reseted."
+  wrong_answer: "Right."
+  shared:
+    navbar:
+      title: "Flashcarder"
+      decks: "Decks"
+      cards: "Cards"
+      all_decks: "All decks"
+      add_deck: "Add deck"
+      all_cards: "All cards"
+      add_card: "Add card"
+      edit_profile: "Edit profile"
+      logout: "Sign out"
+      signup: "Sign up"
+      signup_twitter: "Sign up with twitter"
+      login: "Sign in"
+  home:
+    index: 
+      title: "The first user-friendly manager flash cards in the world. Exactly."
+  reviews:
+    new:
+      title: "The first user-friendly manager flash cards in the world. Exactly."
+      original_text: "Original text"
+      check_answer: "Check answer"
+  registrations:
+    new:
+      title: "Registration"
+  cards:
+    create: 
+      notice: "Successfully added card."
+    new:
+      title: "Adding a new card."
+    edit:
+      title: "Editing card."
+    index: 
+      title: "All cards"
+  decks:
+    create:
+      notice: "Successfully added deck."
+    new:
+      title: "Adding a new deck."
+    edit:
+      title: "Editing deck."
+    index: 
+      title: "All deck."
+  user_sessions:
+    form:
+      submit: "Sign in"
+    new:
+      title: "Signing in"
+  helpers:
+    submit:
+      card:
+        create: "Add card"
+        update: "Save changes"
+      user:
+        create: "Sign in"
+        update: "Save changes"
+      deck:
+        create: "Add deck"
+        update: "Save changes"

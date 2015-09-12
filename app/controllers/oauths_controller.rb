@@ -8,16 +8,17 @@ class OauthsController < ApplicationController
   def callback
     provider = auth_params[:provider]
     if @user = login_from(provider)
-      redirect_to root_path, :notice => "Вы зашли через #{provider.titleize}!"
+      redirect_to root_path, notice: t(:login_with, provider: provider.titleize)
     else
       begin
         @user = create_from(provider)
+        @user.update(locale: session[:locale])
 
         reset_session
         auto_login(@user)
-        redirect_to root_path, :notice => "Вы зашли через #{provider.titleize}!"
+        redirect_to root_path, notice: t(:login_provider, provider: provider.titleize)
       rescue
-        redirect_to root_path, :alert => "Неудачная попытка входа через #{provider.titleize}!"
+        redirect_to root_path, alert: t(:failed_login_provider, provider: provider.titleize)
       end
     end
   end

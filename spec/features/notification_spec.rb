@@ -12,7 +12,7 @@ describe "Notification" do
 
     expect(ActionMailer::Base.deliveries.count).to eql 1
     expect(ActionMailer::Base.deliveries.last.to).to include user.email
-    expect(ActionMailer::Base.deliveries.last.body).to match /2 cards/
+    expect(ActionMailer::Base.deliveries.last.body).to match /2 карточки/
   end
 
 end
