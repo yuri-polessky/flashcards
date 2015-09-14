@@ -7,7 +7,7 @@ describe Review do
 
     context "with correct answer" do
 
-      let(:review) { Review.new(card.id, "way") }
+      let(:review) { Review.new(card_id: card.id, answer: "way") }
 
       it "returns true" do
         expect(review.check_translation).to be_truthy
@@ -37,27 +37,27 @@ describe Review do
 
     context "with correct answer in different letter case" do
       it "returns true" do
-        review = Review.new(card.id, "WaY")
+        review = Review.new(card_id: card.id, answer: "WaY")
         expect(review.check_translation).to be_truthy
       end
     end
 
     context "with correct answer with trailing space" do
       it "returns true" do
-        review = Review.new(card.id, "way ")
+        review = Review.new(card_id: card.id, answer: "way ")
         expect(review.check_translation).to be_truthy
       end
     end
 
     context "with correct answer with typo" do
       it "returns true" do
-        review = Review.new(card.id, "wey ")
+        review = Review.new(card_id: card.id, answer: "wey ")
         expect(review.check_translation).to be_truthy
       end
     end
 
     context "with incorrect answer" do
-      let(:review) { Review.new(card.id, "wei") }
+      let(:review) { Review.new(card_id: card.id, answer: "wei") }
       
       it "returns false" do 
         expect(review.check_translation).to be_falsey
@@ -95,7 +95,7 @@ describe Review do
     end
 
     context "three incorrect answers in row" do
-      let(:review) { Review.new(card.id, "wei") }
+      let(:review) { Review.new(card_id: card.id, answer: "wei") }
       before do
         card.update(failed_review_count: 2)
       end
@@ -131,32 +131,32 @@ describe Review do
     let(:card) { create(:card) }
 
     it "fast answer without typos get maximum quality" do
-      review = Review.new(card.id, "way", 3)
+      review = Review.new(card_id: card.id, answer: "way", answer_time: 3)
       
       expect(review.quality).to eql 5
     end
 
     it "each 30 sec decrease answer quality by 1" do
-      review = Review.new(card.id, "way", 31)
+      review = Review.new(card_id: card.id, answer: "way", answer_time: 31)
       
       expect(review.quality).to eql 4
     end
 
     it "very slow answer decrease answer quality max by 2" do
-      review = Review.new(card.id, "way", 140)
+      review = Review.new(card_id: card.id, answer: "way", answer_time: 140)
       
       expect(review.quality).to eql 3
     end
 
     it "typo decrease answer quality by 1" do
-      review = Review.new(card.id, "wey", 3)
+      review = Review.new(card_id: card.id, answer: "wey", answer_time: 3)
       
       expect(review.quality).to eql 4
     end
 
     it "each failed answer decrease next answer quality by 1" do
       card.update(failed_review_count: 1)
-      review = Review.new(card.id, "way", 3)
+      review = Review.new(card_id: card.id, answer: "way", answer_time: 3)
       
       expect(review.quality).to eql 4
     end

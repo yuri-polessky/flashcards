@@ -1,29 +1,29 @@
+# This class implement algorithm SuperMemo2
+# Link to full description http://www.supermemo.com/english/ol/sm2.htm
 class SuperMemo
   attr_reader :efactor, :quality, :interval, :review_count, :review_date
-  attr_accessor :params
   
   def initialize(efactor, quality, interval, review_count)
     @efactor = efactor
     @quality = quality
     @interval = interval
     @review_count = (quality < 3 ? 0 : review_count)
-    @params = {}
+    process_data
   end
 
-  def get_new_params
-    params[:efactor] = new_efactor
-    params[:interval] = new_interval
-    params[:review_count] = new_review_count
-    params[:review_date] = Date.current + params[:interval].days
-    params
+  def process_data
+    @efactor = new_efactor
+    @interval = new_interval
+    @review_count = review_count + 1
+    @review_date = Date.current + interval.days
   end
 
   private
 
   def new_efactor
     return efactor if quality < 3
-    efactor = self.efactor + (0.1 - (5 - quality) * (0.08 + (5 - quality) * 0.02))
-    [1.3, efactor].max
+    new_efactor = efactor + (0.1 - (5 - quality) * (0.08 + (5 - quality) * 0.02))
+    [1.3, new_efactor].max
   end
 
   def new_interval
@@ -33,9 +33,5 @@ class SuperMemo
     else
       (interval * efactor).round
     end
-  end
-
-  def new_review_count
-    review_count + 1
   end
 end
