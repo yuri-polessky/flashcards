@@ -9,6 +9,9 @@
   <div class="panel panel-primary">
     
     <div class="panel-heading">
+      <div class="pull-right">
+        <p>Прошло <span id="timer"></span> сек.</p>
+      </div>
       <h2 class="panel-title">
         <%= @review.card.translated_text %>
       </h2>
@@ -18,6 +21,7 @@
       <%= simple_form_for :review, url: reviews_path, method: :create do |f| %>
         <%= f.input :answer %>
         <%= f.input :card_id, as: :hidden %>
+        <%= f.input :answer_time, as: :hidden %>
         <%= f.button :submit, t('.check_answer') %>
       <% end %>
     </div>

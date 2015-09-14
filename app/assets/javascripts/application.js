@@ -15,3 +15,19 @@
 //= require bootstrap
 //= require turbolinks
 //= require_tree .
+
+function startTimer() {
+  if (typeof interval !== "undefined") {
+    clearInterval(interval);
+  }
+  seconds = 0;
+  interval = setInterval(function() {
+    seconds++;
+    $("#timer").text(seconds);
+    $("#review_answer_time").val(seconds);
+  }, 1000);
+  $("#timer").text(seconds);
+}
+
+$(document).ready(startTimer);
+$(document).on('page:load',startTimer);

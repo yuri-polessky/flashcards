@@ -20,7 +20,7 @@ en:
   correct_answer: "You are right."
   mistyped_answer: "Translation for %{translation} is %{correct_answer}. You made typo: %{mistyped}."
   three_wrong_answers: "You made three wrong answers in a row. Review date for card reseted."
-  wrong_answer: "Right."
+  wrong_answer: "You are wrong."
   shared:
     navbar:
       title: "Flashcarder"

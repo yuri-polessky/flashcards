@@ -6,7 +6,8 @@ class ReviewsController < ApplicationController
   end
 
   def create
-    @review = Review.new(params[:review][:card_id], params[:review][:answer])
+    @review = Review.new(params[:review][:card_id],
+      params[:review][:answer], params[:review][:answer_time])
 
     if @review.check_translation
       flash[:notice] = success_message
@@ -23,12 +24,10 @@ class ReviewsController < ApplicationController
   private
   
   def success_message
-    if @review.mistype?
-      t(:mistyped_answer, translation: @review.card.translated_text, correct_answer: @review.original_text, mistyped: @review.answer)
-      #"Перевод для #{@review.card.translated_text} - #{@review.original_text}. Вы опечатались: #{@review.answer}"
+    if @review.mistyped?
+      t(:mistyped_answer, translation: @review.translated_text, correct_answer: @review.original_text, mistyped: @review.answer)
     else
       t(:correct_answer)
-      "Правильно."
     end
   end
 
