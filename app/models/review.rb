@@ -42,7 +42,7 @@ class Review
   private
   
   def typos_count
-    @typos_count ||= DamerauLevenshtein.distance(norm_utf(answer), norm_utf(original_text))
+    @typos_count ||= DamerauLevenshtein.distance(normalize_utf(answer), normalize_utf(original_text))
   end
 
   def failed_answer?
@@ -53,13 +53,12 @@ class Review
     typos_count <= 1
   end
 
-  def norm_utf(text)
+  def normalize_utf(text)
     text.strip.mb_chars.downcase
   end
 
   def new_card_params
-    sm = SuperMemo.new(efactor, quality, interval, review_count)
-    { efactor: sm.efactor, interval: sm.interval, review_count: sm.review_count, review_date: sm.review_date }
+    SuperMemo.call(efactor, quality, interval, review_count)
   end
 
   def process_correct_answer
