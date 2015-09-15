@@ -1,11 +1,13 @@
 class Review
-  attr_accessor :card_id, :answer
-  attr_reader :distance
-  SPACE_INTERVALS = [12.hours, 3.day, 1.week, 2.week, 1.month]
+  attr_accessor :card_id, :answer, :answer_time
 
-  def initialize(card_id, answer = nil)
-    @answer = answer.strip.mb_chars.downcase if answer
-    @card_id = card_id
+  delegate :efactor, :interval, :review_count, :failed_review_count,
+           :translated_text, :original_text, to: :card
+
+  def initialize(args)
+    @answer = args[:answer]
+    @card_id = args[:card_id]
+    @answer_time = args[:answer_time]
   end
 
   def check_translation
@@ -18,45 +20,55 @@ class Review
     end
   end
 
-  def correct_answer?
-    @distance = DamerauLevenshtein.distance(answer, original_text)
-    distance <= 1
+  def mistyped?
+    typos_count == 1
   end
 
-  def mistype?
-    distance == 1
-  end
-
-  def new_review_date
-    Time.current + (SPACE_INTERVALS[card.review_count] || 1.month)
-  end
-
-  def review_count
-    @review_count ||= card.review_count + 1
-  end
-
-  def failed_review_count
-    @failed_review_count ||= (card.failed_review_count + 1) % 3
-  end
-
-  def process_correct_answer
-    card.update(review_date: new_review_date, review_count: review_count)
-  end
-
-  def process_incorrect_answer
-    card.failed_review_count = failed_review_count
-    if failed_review_count == 0
-      card.review_count = 1
-      card.review_date = Time.current + 12.hours
-    end
-    card.save
+  # Each 30 seconds reduce quality to 1 point, but no more than 2 point.
+  # Mistyped answer reduce quality to 1 point.
+  # Each wrong answer reduce quality to 1.
+  # Quality is zero when user made three wrong answers in row.
+  def quality
+    return 0 if failed_answer?
+    @quality ||= 5 - failed_review_count - [(answer_time.to_i / 30), 2].min - typos_count
   end
 
   def card
     @card ||= Card.find(card_id)
   end
 
-  def original_text
-    @original_text ||= card.original_text.strip.mb_chars.downcase
+  private
+  
+  def typos_count
+    @typos_count ||= DamerauLevenshtein.distance(normalize_utf(answer), normalize_utf(original_text))
+  end
+
+  def failed_answer?
+    failed_review_count == 3
+  end
+
+  def correct_answer?
+    typos_count <= 1
+  end
+
+  def normalize_utf(text)
+    text.strip.mb_chars.downcase
+  end
+
+  def new_card_params
+    SuperMemo.call(efactor, quality, interval, review_count)
+  end
+
+  def process_correct_answer
+    card.update(new_card_params)
+  end
+
+  def process_incorrect_answer
+    card.failed_review_count += 1
+    if failed_answer?
+      card.update(new_card_params.merge({ failed_review_count: 0 }))
+    else
+      card.update(failed_review_count: failed_review_count)
+    end
   end
 end

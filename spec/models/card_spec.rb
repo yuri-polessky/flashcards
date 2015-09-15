@@ -5,10 +5,8 @@ describe Card do
   let!(:user) { create(:user) }
 
   it "has correct review_date after creation" do
-    Timecop.freeze
     card = user.cards.create(original_text: "way", translated_text: "путь")
-    expect(card.review_date).to eq Time.now
-    Timecop.return
+    expect(card.review_date).to eq Date.current
   end
 
   it "has correct review_count after creation" do
