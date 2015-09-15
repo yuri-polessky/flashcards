@@ -13,6 +13,8 @@ gem 'aws-sdk', '~> 1.6'
 gem 'damerau-levenshtein'
 gem 'whenever', require: false
 gem 'http_accept_language'
+gem 'rollbar', '~> 2.2.1'
+gem 'newrelic_rpm'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
