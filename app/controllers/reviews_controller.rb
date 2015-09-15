@@ -8,9 +8,9 @@ class ReviewsController < ApplicationController
     @review = Review.new(review_params)
     @review.check_translation
     flash.now[:notice] = message_for_review
-    
+
     build_review unless @review.state == :wrong
-    
+
     respond_to do |format|
       format.js
     end
