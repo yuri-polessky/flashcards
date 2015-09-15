@@ -1,7 +1,6 @@
 class Review
   attr_accessor :card_id, :answer, :answer_time
-  MAX_TYPOS = 1
-  
+
   delegate :efactor, :interval, :review_count, :failed_review_count,
            :translated_text, :original_text, to: :card
 
@@ -22,17 +21,16 @@ class Review
   end
 
   def mistyped?
-    (1..MAX_TYPOS) === typos_count
+    typos_count == 1
   end
 
   # Each 30 seconds reduce quality to 1 point, but no more than 2 point.
   # Mistyped answer reduce quality to 1 point.
   # Each wrong answer reduce quality to 1.
   # Quality is zero when user made three wrong answers in row.
-  
   def quality
     return 0 if failed_answer?
-    @quality ||= 5 - failed_review_count - [(answer_time.to_i/30),2].min - typos_count
+    @quality ||= 5 - failed_review_count - [(answer_time.to_i / 30), 2].min - typos_count
   end
 
   def card
