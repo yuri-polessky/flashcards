@@ -11,21 +11,21 @@ describe 'Review cards' do
     visit root_path
   end
   
-  it "show 'Right' with correct answer" do
+  it "show 'Right' with correct answer", js: true do
     fill_in :review_answer, with: card.original_text
     click_button "Проверить"
 
     expect(page).to have_content "Правильно"
   end
 
-  it "show 'Right and typo' with mistyped answer" do
+  it "show 'Right and typo' with mistyped answer", js: true do
     fill_in :review_answer, with: "wey"
     click_button "Проверить"
 
     expect(page).to have_content "Перевод для путь - way. Вы опечатались: wey"
   end
 
-  it "show 'wrong' with incorrect answer" do
+  it "show 'wrong' with incorrect answer", js: true do
     fill_in :review_answer, with: "***"
     click_button "Проверить"
 

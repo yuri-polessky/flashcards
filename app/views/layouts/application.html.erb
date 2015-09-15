@@ -12,10 +12,8 @@
   <%= render "shared/navbar" %>
 
     <section>
-      <div>
-        <% flash.each do |key,value| %>
-          <p class="<%= flash_class(key) %>"><%= value %></p>
-        <% end %>
+      <div id="notice_panel">
+        <%= render "shared/flash" %>
       </div>
       <%= yield %>
     </section>

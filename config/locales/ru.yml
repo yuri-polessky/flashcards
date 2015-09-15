@@ -42,6 +42,7 @@ ru:
     new:
       title: "Первый в мире удобный менеджер флеш-карточек. Именно так."
       original_text: "Исходный текст"
+    form:
       check_answer: "Проверить"
   registrations:
     new:

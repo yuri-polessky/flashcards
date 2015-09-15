@@ -42,6 +42,7 @@ en:
     new:
       title: "The first user-friendly manager flash cards in the world. Exactly."
       original_text: "Original text"
+    form:
       check_answer: "Check answer"
   registrations:
     new:
