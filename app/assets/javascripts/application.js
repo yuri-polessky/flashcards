@@ -28,5 +28,26 @@ function startTimer() {
   $("#timer").text(seconds);
 }
 
-$(document).ready(startTimer);
-$(document).on('page:load',startTimer);
+function checkTranslation() {
+  startTimer();
+  $('#review_form').submit(function(e) {
+    e.preventDefault();
+    var sendRequest = $.post('/reviews', $('#review_form').serialize(), null, "json");
+    return sendRequest.done(function(data) {
+      if (data.state == "wrong") {
+        $("#notice_panel").empty().append($('<div />').attr('class', 'alert alert-info').append(data.message));
+      } else {
+        $("#notice_panel").empty().append($('<div />').attr('class', 'alert alert-info').append(data.message));
+        $.getScript("/reviews/new.js");
+      }
+    });
+  });
+};
+
+$(function(){
+  checkTranslation();
+});
+$(document).ajaxComplete(function (){
+  $('#review_form').off("submit");
+  checkTranslation();
+});

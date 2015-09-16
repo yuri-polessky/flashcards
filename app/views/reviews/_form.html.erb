@@ -13,7 +13,7 @@
       <div class="thumbnail">
         <%= image_tag review.card.picture.url(:medium) %>
       </div>
-      <%= simple_form_for :review, url: reviews_path, remote: true do |f| %>
+      <%= simple_form_for :review, url: reviews_path, html: { id: "review_form" } do |f| %>
         <%= f.input :answer %>
         <%= f.input :card_id, as: :hidden %>
         <%= f.input :answer_time, as: :hidden %>

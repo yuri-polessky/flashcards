@@ -27,7 +27,7 @@ class Review
     when :wrong then I18n.t(:wrong_answer)
     when :failed then I18n.t(:three_wrong_answers)
     when :mistyped
-      I18n.t(:mistyped_answer, translation: translated_text, 
+      I18n.t(:mistyped_answer, translation: translated_text,
              correct_answer: original_text, mistyped: answer)
     end
   end
