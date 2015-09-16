@@ -1,5 +1,6 @@
 class Review
   attr_accessor :card_id, :answer, :answer_time
+  attr_reader :state
 
   delegate :efactor, :interval, :review_count, :failed_review_count,
            :translated_text, :original_text, to: :card
@@ -20,8 +21,15 @@ class Review
     end
   end
 
-  def mistyped?
-    typos_count == 1
+  def message
+    case state
+    when :right then I18n.t(:correct_answer)
+    when :wrong then I18n.t(:wrong_answer)
+    when :failed then I18n.t(:three_wrong_answers)
+    when :mistyped
+      I18n.t(:mistyped_answer, translation: translated_text,
+             correct_answer: original_text, mistyped: answer)
+    end
   end
 
   # Each 30 seconds reduce quality to 1 point, but no more than 2 point.
@@ -60,14 +68,17 @@ class Review
   end
 
   def process_correct_answer
+    @state = (typos_count == 0 ? :right : :mistyped)
     card.update(new_card_params)
   end
 
   def process_incorrect_answer
     card.failed_review_count += 1
     if failed_answer?
+      @state = :failed
       card.update(new_card_params.merge({ failed_review_count: 0 }))
     else
+      @state = :wrong
       card.update(failed_review_count: failed_review_count)
     end
   end
