@@ -1,5 +1,6 @@
 class Review
-  attr_accessor :card_id, :answer, :answer_time, :state
+  attr_accessor :card_id, :answer, :answer_time
+  attr_reader :state
 
   delegate :efactor, :interval, :review_count, :failed_review_count,
            :translated_text, :original_text, to: :card
@@ -17,6 +18,17 @@ class Review
     else
       process_incorrect_answer
       false
+    end
+  end
+
+  def message
+    case state
+    when :right then I18n.t(:correct_answer)
+    when :wrong then I18n.t(:wrong_answer)
+    when :failed then I18n.t(:three_wrong_answers)
+    when :mistyped
+      I18n.t(:mistyped_answer, translation: translated_text, 
+             correct_answer: original_text, mistyped: answer)
     end
   end
 
@@ -56,17 +68,17 @@ class Review
   end
 
   def process_correct_answer
-    self.state = (typos_count == 0 ? :right : :mistyped)
+    @state = (typos_count == 0 ? :right : :mistyped)
     card.update(new_card_params)
   end
 
   def process_incorrect_answer
     card.failed_review_count += 1
     if failed_answer?
-      self.state = :failed
+      @state = :failed
       card.update(new_card_params.merge({ failed_review_count: 0 }))
     else
-      self.state = :wrong
+      @state = :wrong
       card.update(failed_review_count: failed_review_count)
     end
   end

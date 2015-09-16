@@ -32,6 +32,14 @@ describe 'Review cards' do
     expect(page).to have_content "Неправильно"
   end
 
+  it "show 'failed' with three incorrect answers in row", js: true do
+    card.update(failed_review_count: 2)
+    fill_in :review_answer, with: "***"
+    click_button "Проверить"
+
+    expect(page).to have_content "Три неправильных ответа подряд."
+  end
+
   it "show cards from current deck" do
     new_deck = create(:deck, user: user)
     user.update(current_deck: new_deck)
