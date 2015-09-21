@@ -60,5 +60,15 @@ group :test do
   gem 'database_cleaner'
 end
 
-gem 'rails_12factor', group: :production
+group :development do
+  gem 'capistrano-rails'
+  gem 'capistrano-bundler'
+  gem 'capistrano-rbenv'
+  gem 'capistrano-puma'
+end
+
+group :production do
+  gem 'puma'
+  gem 'rails_12factor'
+end
 ruby '2.2.1'

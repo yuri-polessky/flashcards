@@ -1,5 +1,4 @@
-class OauthsController < ApplicationController
-  skip_before_action :require_login
+class Guest::OauthsController < GuestController
 
   def oauth
     login_at(auth_params[:provider])
@@ -24,6 +23,7 @@ class OauthsController < ApplicationController
   end
 
   private
+  
   def auth_params
     params.permit(:code, :provider)
   end

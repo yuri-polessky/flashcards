@@ -1,5 +1,4 @@
-class RegistrationsController < ApplicationController
-  skip_before_action :require_login
+class Guest::RegistrationsController < GuestController
   
   def new
     @user = User.new

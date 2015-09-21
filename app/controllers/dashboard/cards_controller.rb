@@ -1,4 +1,4 @@
-class CardsController < ApplicationController
+class Dashboard::CardsController < DashboardController
   before_action :set_card, except: [:index,:new,:create]
   def index
     @cards = current_user.cards

@@ -1,4 +1,4 @@
-class ReviewsController < ApplicationController
+class Dashboard::ReviewsController < DashboardController
   
   def new
     build_review
