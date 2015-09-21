@@ -4,13 +4,13 @@ lock '3.4.0'
 set :application, 'flashcards'
 set :repo_url, 'git://github.com/yuri-polessky/flashcards.git'
 
-set :branch, 'master'
+set :branch, 'twentieth-task'
 
 set :deploy_to, '/home/ubuntu/applications/flashcards'
 
 set :log_level, :info
 
-set :linked_files, %w{config/database.yml config/settings.yml}
+set :linked_files, %w{config/database.yml config/application.yml config/secrets.yml}
 
 set :linked_dirs, %w{bin log tmp/pids tmp/cache tmp/sockets vendor/bundle public/uploads}
 
