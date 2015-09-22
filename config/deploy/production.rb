@@ -3,7 +3,7 @@
 # Defines a single server with a list of roles and multiple properties.
 # You can define all roles on a single server, or split them:
 
-#server 'ec2-52-88-40-177.us-west-2.compute.amazonaws.com', user: 'ubuntu', roles: %w{app db web}
+# server 'ec2-52-88-40-177.us-west-2.compute.amazonaws.com', user: 'ubuntu', roles: %w{app db web}
 # server 'example.com', user: 'deploy', roles: %w{app web}, other_property: :other_value
 # server 'db.example.com', user: 'deploy', roles: %w{db}
 
