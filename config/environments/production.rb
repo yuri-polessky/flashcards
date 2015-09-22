@@ -11,13 +11,13 @@ Rails.application.configure do
 
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-    address:              'smtp.sendgrid.net',
+    address:              'smtp.mailgun.org',
     port:                 587,
     authentication:       :plain,
-    user_name:            ENV["SENDGRID_USERNAME"],
-    password:             ENV["SENDGRID_PASSWORD"],
-    domain:               'ec2-52-88-40-177.us-west-2.compute.amazonaws.com',
-    enable_starttls_auto: true 
+    user_name:            ENV["MAILGUN_USERNAME"],
+    password:             ENV["MAILGUN_PASSWORD"],
+    domain:               'sandboxe58ede60e51b49b18eedba8b4c289a2d.mailgun.org',
+    enable_starttls_auto: true
   }
 
   config.action_mailer.default_url_options = {
