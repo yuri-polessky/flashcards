@@ -1,5 +1,4 @@
-class UserSessionsController < ApplicationController
-  skip_before_action :require_login, except: [:destroy]
+class Guest::UserSessionsController < GuestController
   
   def new
     @user = User.new
@@ -13,10 +12,4 @@ class UserSessionsController < ApplicationController
       render :new
     end
   end
-  
-  def destroy
-    logout
-    redirect_to root_url, notice: t(:success_logout)
-  end
-
 end

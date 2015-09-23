@@ -35,41 +35,43 @@ ru:
       signup: "Зарегистрироваться"
       signup_twitter: "Войти через Твиттер"
       login: "Войти"
-  home:
-    index: 
-      title: "Первый в мире удобный менеджер флеш-карточек. Именно так."
-  reviews:
-    new:
-      title: "Первый в мире удобный менеджер флеш-карточек. Именно так."
-      original_text: "Исходный текст"
-    form:
-      check_answer: "Проверить"
-  registrations:
-    new:
-      title: "Регистрация"
-  cards:
-    create: 
-      notice: "Успешно добавлена карточка."
-    new:
-      title: "Добавление новой карточки."
-    edit:
-      title: "Редактирование карточки."
-    index: 
-      title: "Все карточки."
-  decks:
-    create:
-      notice: "Успешно добавлена колода."
-    new:
-      title: "Добавление новой колоды."
-    edit:
-      title: "Редактирование колоды."
-    index: 
-      title: "Все колоды"
-  user_sessions:
-    form:
-      submit: "Войти"
-    new:
-      title: "Вход"
+  dashboard:
+    reviews:
+      new:
+        title: "Первый в мире удобный менеджер флеш-карточек. Именно так."
+        original_text: "Исходный текст"
+      form:
+        check_answer: "Проверить"
+    cards:
+      create: 
+        notice: "Успешно добавлена карточка."
+      new:
+        title: "Добавление новой карточки."
+      edit:
+        title: "Редактирование карточки."
+      index: 
+        title: "Все карточки."
+    decks:
+      create:
+        notice: "Успешно добавлена колода."
+      new:
+        title: "Добавление новой колоды."
+      edit:
+        title: "Редактирование колоды."
+      index: 
+        title: "Все колоды"
+  guest:
+    home:
+      index: 
+        title: "Первый в мире удобный менеджер флеш-карточек. Именно так."
+    registrations:
+      new:
+        title: "Регистрация"
+    user_sessions:
+      form:
+        submit: "Войти"
+      new:
+        title: "Вход"
   helpers:
     submit:
       card:

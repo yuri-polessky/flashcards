@@ -35,41 +35,43 @@ en:
       signup: "Sign up"
       signup_twitter: "Sign up with twitter"
       login: "Sign in"
-  home:
-    index: 
-      title: "The first user-friendly manager flash cards in the world. Exactly."
-  reviews:
-    new:
-      title: "The first user-friendly manager flash cards in the world. Exactly."
-      original_text: "Original text"
-    form:
-      check_answer: "Check answer"
-  registrations:
-    new:
-      title: "Registration"
-  cards:
-    create: 
-      notice: "Successfully added card."
-    new:
-      title: "Adding a new card."
-    edit:
-      title: "Editing card."
-    index: 
-      title: "All cards"
-  decks:
-    create:
-      notice: "Successfully added deck."
-    new:
-      title: "Adding a new deck."
-    edit:
-      title: "Editing deck."
-    index: 
-      title: "All deck."
-  user_sessions:
-    form:
-      submit: "Sign in"
-    new:
-      title: "Signing in"
+  dashboard:
+    reviews:
+      new:
+        title: "The first user-friendly manager flash cards in the world. Exactly."
+        original_text: "Original text"
+      form:
+        check_answer: "Check answer"
+    cards:
+      create: 
+        notice: "Successfully added card."
+      new:
+        title: "Adding a new card."
+      edit:
+        title: "Editing card."
+      index: 
+        title: "All cards"
+    decks:
+      create:
+        notice: "Successfully added deck."
+      new:
+        title: "Adding a new deck."
+      edit:
+        title: "Editing deck."
+      index: 
+        title: "All deck."
+  guest:
+    home:
+      index: 
+        title: "The first user-friendly manager flash cards in the world. Exactly."
+    registrations:
+      new:
+        title: "Registration"
+    user_sessions:
+      form:
+        submit: "Sign in"
+      new:
+        title: "Signing in"
   helpers:
     submit:
       card:
