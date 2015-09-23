@@ -21,7 +21,7 @@ Rails.application.configure do
   }
 
   config.action_mailer.default_url_options = {
-    host: "http://ec2-52-88-40-177.us-west-2.compute.amazonaws.com/"
+    host: "http://ec2-52-88-40-177.us-west-2.compute.amazonaws.com"
   }
   
   config.action_mailer.default_options = {

@@ -3,7 +3,7 @@
 # Defines a single server with a list of roles and multiple properties.
 # You can define all roles on a single server, or split them:
 
-# server 'ec2-52-88-40-177.us-west-2.compute.amazonaws.com', user: 'ubuntu', roles: %w{app db web}
+server '52.89.143.219', user: 'ubuntu', roles: %w{app db web}
 # server 'example.com', user: 'deploy', roles: %w{app web}, other_property: :other_value
 # server 'db.example.com', user: 'deploy', roles: %w{db}
 
@@ -16,9 +16,6 @@
 # group is considered to be the first unless any  hosts have the primary
 # property set. Specify the username and a domain or IP for the server.
 # Don't use `:all`, it's a meta role.
-role :app, %w{ubuntu@52.88.40.177}
-role :web, %w{ubuntu@52.88.40.177}
-role :db,  %w{ubuntu@52.88.40.177}
 
 # role :app, %w{deploy@example.com}, my_property: :my_value
 # role :web, %w{user1@primary.com user2@additional.com}, other_property: :other_value
